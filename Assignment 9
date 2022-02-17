@@ -1,0 +1,103 @@
+import FileUtils
+import os
+
+'''
+Brandon Munroe - 1259632
+Sp20
+CSCI160 - Computer Science
+'''
+
+def findMaxValue (theList):
+   highValue = min(theList)
+   for i in theList:
+      if i > highValue:
+         highValue = i
+   print('The largest integer value found in the list is: ',highValue)  
+      
+   def findMinValue (theList):
+      lowValue = max(theList)
+      for i in theList:
+         if i < lowValue:
+            lowValue = i
+      print('The smallest integer value found in the list is: ',lowValue)   
+            
+      def calcRange (theList):
+         difference = highValue - lowValue
+         print('The range of the list is: ',difference)
+         return difference
+      
+      calcRange (theList)
+   
+   findMinValue (theList)
+   
+def calcAverage (theList):
+   total = 0
+   count = 0
+   for i in theList:
+      total = i + total
+      count = 1 + count
+   average = total / count 
+   print('The average of the values in the list is: ',average)
+   return average   
+
+def findNumberAbove (theList, testValue):
+   count = 0
+   for i in theList:
+      if i > testValue:
+         count = 1 + count
+   print('The number of values greater than',testValue, 'is',count)
+   return count
+
+def findFirstOccurance (theList, valueToFind):
+   x = theList.index(valueToFind)
+   print('The first index of the value',valueToFind,'is',x)
+   return x
+        
+def findLastOccurance (theList, valueToFind):
+   for i in reversed(range(len(theList))):
+      if theList[i] == valueToFind:
+         print('The last index of the value',valueToFind,'is',i)
+         return i
+      
+
+def calcCount (theList, valueToFind):
+   count2 = 0
+   for i in theList:
+      if i == valueToFind:
+         count2 = 1 + count2
+      else:
+         count2 = 0 + count2
+   print('The number of occurrences of',valueToFind,'is',count2)      
+   return count2         
+   
+
+def isInList (theList, valueToFind):
+   count3 = theList.count(valueToFind)
+   if count3 > 0:
+      print ('Does the value',valueToFind,'occurs at least once:','True')
+   else:
+      print ('Does the value',valueToFind,'occurs at least once:','False')
+         
+
+def fillListFromFile():
+   fileName = FileUtils.selectOpenFile ('Choose a filename: ')
+   if os.path.isfile(fileName) == True:
+      infile = open(fileName,'r')
+      lines = infile.readlines()
+      lines2 = []
+      for i in lines:
+         h = i.replace('\n','')
+         lines2.append(int(h)) 
+         
+   findMaxValue(lines2)
+   calcAverage (lines2)
+   findNumberAbove (lines2,2)
+   findFirstOccurance (lines2,2)
+   findLastOccurance (lines2,2)
+   calcCount (lines2,2)
+   isInList (lines2,9)
+
+
+
+
+fillListFromFile()
