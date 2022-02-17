@@ -1,0 +1,79 @@
+'''
+Brandon Munroe - 1259632
+Sp20
+CSCI160 - Computer Science
+'''
+
+import os
+
+option = int(input('What would you like to do? \n \
+1. Open a data file \n 2. Add new names \n \
+3. Search by date \n \
+4. Display all birthdays for the month \n \
+5. Exit program \n \n Your choice?-> '))
+
+while option != 5:
+#------------------------------------------------------         
+   if option == 1:
+      print()
+      fileName = input( 'Choose file: ')
+      if os.path.isfile(fileName) == True:
+         birthdayList = {}
+         inFile = open(fileName,'r')
+         for date in inFile:
+            date = date.strip()
+            (name,birthday) = date.split(':')
+            birthdayList[name] = birthday
+         print()
+          
+      else:
+         print('File does not exist')
+      print()
+         
+#------------------------------------------------------   
+   elif option == 2:
+      
+      newName = input('Name to add: ')
+      newBirthday = input('Date to add for ' + newName + ': ')
+      if newName != "":
+         foundBirthday = False
+         for name in birthdayList:
+            if birthdayList[name] == newBirthday:
+               foundBirthday = True
+               print('Sorry, that date is taken. Try again with a different date.')
+         if foundBirthday == False:
+            birthdayList[newName] = newBirthday
+            print(newName,'has been added')
+            for name in birthdayList:
+               print(name,birthdayList[name])  
+      print()
+#------------------------------------------------------   
+   elif option == 3:
+      print()
+      dateToFind = input ('Enter student birthdate, enter 0 to quit: ')
+      while dateToFind != '0':
+         foundNumber = False
+         for name in birthdayList:
+            if birthdayList[name] == str(dateToFind):
+               print( name ,' has a birthdate of ',dateToFind,sep='')
+               foundNumber = True
+         if foundNumber == False:
+            print('Unable to find birthday of ',dateToFind,sep='')
+         print()
+         dateToFind = input ('Enter student date, enter 0 to quit: ')       
+#------------------------------------------------------      
+   elif option == 4:
+      print()
+      for name in birthdayList:
+         print(name,birthdayList[name])
+      
+      print()
+#------------------------------------------------------   
+   option = int(input('What would you like to do? \n \
+1. Open a data file \n 2. Add new names \n \
+3. Search by date \n \
+4. Display all birthdays for the month \n \
+5. Exit program \n \n Your choice?-> '))
+
+print()
+print('The Program has ended')   
