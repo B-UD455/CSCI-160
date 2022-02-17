@@ -1,0 +1,59 @@
+'''
+Brandon Munroe - 1259632
+Sp20
+CSCI160 - Computer Science
+'''
+
+import os
+
+#textCount.txt
+
+
+def findMinValues(textList):
+   minvalue = min(textList.values())  
+   print('Letter(s) with lowest count - ', minvalue)
+   for text in textList:
+      if textList[text] == minvalue:
+         print(text)     
+   
+def findMaxValues(textList):
+   maxvalue = max(textList.values())
+   print('Letter(s) with highest count - ', maxvalue)
+   for text in textList:
+      if textList[text] == maxvalue:
+         print(text)   
+      
+   print()   
+   findMinValues(textList)
+   
+   
+def printchart(textList):
+   print('Letter count:')
+   for text in textList:
+      print(text,textList[text])
+   print()   
+   findMaxValues(textList)
+
+
+def main():
+   textList = {}
+   fileName = input( 'Enter the translation file: ')
+   inFile = open(fileName,'r')
+   count = 0      
+    
+   for text in inFile:
+      text = text.strip()
+      text = text.lower()
+      if text in textList:
+         count +=1
+      else:
+         count = 1
+      textList[text] = count  
+      
+   printchart(textList)
+
+
+
+main()      
+   
+   
